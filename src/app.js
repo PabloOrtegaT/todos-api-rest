@@ -5,13 +5,13 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const userRoutes = require('./routes/books');
+const userRoutes = require('./routes/todos');
 
 // settings
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 3000);
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/rest-api-example')
+mongoose.connect('mongodb://localhost/rest-api-todos')
 .then(db => console.log('db is connected'))
 .catch(err => console.log(err));
 
@@ -24,7 +24,7 @@ app.use(express.urlencoded({
 }));
 
 // routes
-app.use('/books', userRoutes);
+app.use('/todos', userRoutes);
 
 // static files
 
