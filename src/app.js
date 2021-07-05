@@ -2,13 +2,15 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
-const userRoutes = require('./routes/todos');
+const appOrigin = process.env.APP_ORIGIN;
+const userRoutes = require('./routes/users');
 
 // settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/rest-api-todos')
@@ -22,11 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+app.use(cors());
 
 // routes
-app.use('/todos', userRoutes);
-
-// static files
+app.use('/users', userRoutes);
 
 // error handlers
 

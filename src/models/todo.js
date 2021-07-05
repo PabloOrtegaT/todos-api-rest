@@ -2,27 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const todoSchema = new Schema({
-    name: {
+    title: {
         type: String,
-        trim: true,
-        required: true
+        trim: true
     },
-    description: {
-        type: String,
-        trim: true,
-        required: true
+    completionDate:{
+        type: Date
     },
-    importance: {
-        type: Number,
-        required: true
+    completed: {
+        type: Boolean
     },
     dateAdded: {
-        type: Date,
-        required: true
+        type: Date
     },
     lastUpdate: {
-        type: Date,
-        required: true
+        type: Date
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     }
 });
 
